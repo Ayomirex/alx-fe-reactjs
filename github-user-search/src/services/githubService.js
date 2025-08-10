@@ -11,7 +11,7 @@ if (minRepos) queryParts.push(`repos:>=${minRepos}`);
 
 
   const query = queryParts.join(" ");
-  const url = https://api.github.com/search/users?q=${encodeURIComponent(query)}&per_page=10;
+  const url = `https://api.github.com/search/users?q=${encodeURIComponent(query)}`;
 
   const response = await axios.get(url);
 

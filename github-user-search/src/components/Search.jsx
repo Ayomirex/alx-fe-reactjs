@@ -36,7 +36,7 @@ export default function Search() {
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            placeholder="e.g., stephenekwueme"
+            placeholder="e.g., Animashaun mistura"
             className="border rounded px-3 py-2 w-full"
           />
         </div>
