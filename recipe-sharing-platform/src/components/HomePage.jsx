@@ -1,39 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import data from "../data.json";
 
 const HomePage = () => {
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
-    fetch("/data.json") // fetches from public or src depending on setup
-      .then((response) => response.json())
-      .then((data) => setRecipes(data))
-      .catch((error) => console.error("Error loading recipes:", error));
+    setRecipes(data); // Load mock data
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 py-10 px-4">
-      <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">
-        🍴 Delicious Recipes
-      </h1>
+    <div className="p-6">
+      <h1 className="text-3xl font-bold text-center mb-8">🍽️ Recipe Sharing Platform</h1>
 
-      {/* Responsive grid */}
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
-
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {recipes.map((recipe) => (
-          <div
-            key={recipe.id}
-            className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 p-4 flex flex-col"
-          >
-            <img
-              src={recipe.image}
-              alt={recipe.title}
-              className="rounded-xl w-full h-48 object-cover mb-4 hover:scale-105 transition-transform duration-300"
-            />
-            <h2 className="text-xl font-semibold text-gray-900 mb-2">
-              {recipe.title}
-            </h2>
-            <p className="text-gray-600 text-sm">{recipe.summary}</p>
-          </div>
+          <Link key={recipe.id} to={`/recipe/${recipe.id}`}>
+            <div className="bg-white shadow-md rounded-lg p-4 hover:shadow-xl hover:scale-105 transition-transform">
+              <img
+                src={recipe.image}
+                alt={recipe.title}
+                className="w-full h-40 object-cover rounded-md"
+              />
+              <h2 className="text-xl font-semibold mt-3">{recipe.title}</h2>
+              <p className="text-gray-600 mt-2">{recipe.summary}</p>
+            </div>
+          </Link>
         ))}
       </div>
     </div>
