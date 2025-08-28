@@ -17,7 +17,8 @@ const HomePage = () => {
       </h1>
 
       {/* Responsive grid */}
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+
         {recipes.map((recipe) => (
           <div
             key={recipe.id}
